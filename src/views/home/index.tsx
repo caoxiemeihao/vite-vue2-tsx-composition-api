@@ -1,63 +1,76 @@
 /* eslint-disable */
-import { defineComponent, ref } from '@vue/composition-api'
-import { Col, Row, Icon, NavBar } from 'vant'
-import { Demo } from './interface'
+import { defineComponent, ref, watch } from '@vue/composition-api'
+import { NavBar, Tab, Tabs, Row, Col, Image, Toast, Button } from 'vant'
+import useUsers from '@/hooks/use-users'
+import withComps from '@/hooks/with-comps'
+import HelloWorld from '@/components/HelloWorld.vue'
 import styles from './index.module.less'
 
 export default defineComponent({
   name: 'home',
   setup() {
-    const demos = ref<Demo[]>([
-      {
-        title: 'Hooks',
-        path: '/hooks',
-        // icon: <Icon name="enlarge" />, setup 中不支持 tsx
-        icon: {
-          name: 'enlarge',
-        },
+    const { users } = useUsers()
+    const { date, visble, component } = withComps()
+    const tab = ref(1)
+    const toast = Toast.loading({
+      message: 'Loading...',
+      forbidClick: true,
+    })
+
+    const unwatch = watch(
+      () => users.value,
+      (newVal, oldVal) => {
+        if (newVal.length) {
+          unwatch()
+          toast.close()
+        }
       },
-      {
-        title: 'Component',
-        path: '/component',
-        icon: {
-          name: 'wap-nav',
-        },
+    )
+
+    watch(
+      () => date.value,
+      () => {
+        Toast(`你选择的日期:\n${new Array(37).fill('-').join('')}\n${date.value}`)
       },
-      {
-        title: 'hooks',
-        path: '/hooks',
-        icon: {
-          name: 'diamond',
-        },
-      },
-    ])
+    )
 
     return {
-      demos,
+      tab,
+      users,
+      HCVisble: visble,
+      HCComponent: component,
     }
   },
   render() {
+    const HookComp = (
+      <Row class="img-box">
+        {this.users.map((user, idx) => (
+          <Col class="img-item" key={idx} span={8}>
+            <Image src={user.avatar_url} />
+            <div>{user.login}</div>
+          </Col>
+        ))}
+      </Row>
+    )
+
     return (
       <div class={styles.home}>
         <NavBar title="Home" />
         <main>
-          <div class="items">
-            <Row>
-              {this.demos.map((demo, idx) => (
-                <Col span={8} key={idx}>
-                  <div class="icon">
-                    <Icon {...{ props: demo.icon }} />
-                  </div>
-                  <div class="title">
-                    <a>{demo.title}</a>
-                  </div>
-                </Col>
-              ))}
-            </Row>
-            <div class="van-hairline--top" />
-            <div class="components">
-            </div>
-          </div>
+          <Tabs vModel={this.tab}>
+            <Tab title="Hooks" name={1}>
+              {HookComp}
+            </Tab>
+            <Tab title="H-C" name={2}>
+              <div style="padding-top:24px;">
+                <Button type="info" onclick={() => this.HCVisble = true}>点击唤起日期</Button>
+              </div>
+              {this.HCComponent()}
+            </Tab>
+            <Tab title="Component" name={3}>
+              <HelloWorld />
+            </Tab>
+          </Tabs>
         </main>
       </div>
     )
