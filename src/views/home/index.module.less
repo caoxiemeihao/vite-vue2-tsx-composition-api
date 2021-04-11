@@ -1,5 +1,40 @@
 .home {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
   :global {
-    
+    main {
+      flex-grow: 1;
+      padding: 10px;
+    }
+
+    .items {
+      height: 100%;
+      background-color: white;
+      box-shadow: var(--chunk-shadow);
+
+      .van-col {
+        .van-icon {
+          font-size: 34px;
+          margin-bottom: 9px;
+        }
+
+        position: relative;
+        padding: 34px 0;
+
+        &:not(:last-child)::after {
+          content: "";
+          position: absolute;
+          top: 10%;
+          right: 0;
+          width: 1px;
+          height: 80%;
+          background-color: #ddd;
+          transform: scaleX(.5);
+        }
+      }
+    }
+
   }
 }

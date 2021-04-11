@@ -9,5 +9,10 @@ module.exports = {
   ],
   plugins: [
     ['@babel/plugin-transform-typescript', { isTSX: true }], // 开启 typescript
+    ["import", { // 开启 vant 按需引入
+      "libraryName": "vant",
+      "libraryDirectory": "es",
+      "style": true
+    }],
   ],
 }
