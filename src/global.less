@@ -1,8 +1,21 @@
-.app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+html {
+  // 阻止 iOS 屏幕翻转后字体调整, 不影响用户缩放
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  background-color: #f4f4f4;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+}
+
+body {
+  box-sizing: border-box;
+  height: 100%;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   color: #2c3e50;
-  margin-top: 60px;
+  font-size: 12px;
+}
+
+.app {
+  text-align: center;
+  margin-top: 15px;
 }
