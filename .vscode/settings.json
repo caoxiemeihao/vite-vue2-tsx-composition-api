@@ -1,0 +1,7 @@
+{
+  "formate.verticalAlignProperties": false,
+  "emmet.includeLanguages": {
+    "javascriptreact": "html",
+    "typescriptreact": "html"
+  }
+}
