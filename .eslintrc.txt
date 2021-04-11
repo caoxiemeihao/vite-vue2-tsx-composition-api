@@ -1,0 +1,12 @@
+module.exports = {
+  rules: {
+    '@typescript-eslint/no-explicit-any': 0, // 显示的写 any
+    '@typescript-eslint/explicit-module-boundary-types': 0, // 用 /** 声明 */ 形式在 .js 中
+    '@typescript-eslint/no-empty-interface': 0, // 空的 interface
+    'vue/html-self-closing': 0, // 空标签、自闭合标签
+    '@typescript-eslint/no-empty-function': 0, // 空的 function
+    '@typescript-eslint/no-unused-vars': 0, // 定义但未使用
+    'arrow-parens': 0, // 箭头函数第一个参数非必要圆括号
+    'semi': 0, // 不必以分号结尾
+  },
+}

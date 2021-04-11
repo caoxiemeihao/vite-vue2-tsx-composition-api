@@ -13,3 +13,9 @@
 - **目的** 本文是从 `React` 使用者视角带你解锁 `Vue2` 中开启 `Composition API` 🖖 并使用 `TSX` 🚀 地开发模式 🎉
 - **希望** 本文能助你一臂之力 💪 不要慌，你还可以继续治疗 💊
 
+## 注意！
+- `setup` 中不支持(setup 中没有 this) `tsx`, 必须写在 `render` 中
+
+## 参考文章
+- [在Vue中使用JSX的正确姿势](https://zhuanlan.zhihu.com/p/37920151)
+
