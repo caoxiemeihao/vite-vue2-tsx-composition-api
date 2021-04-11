@@ -3,7 +3,7 @@ import styles from './index.module.less'
 
 export default defineComponent({
   setup() {
-    console.log('========')
+    console.log('Home component')
   },
   render() {
     return (

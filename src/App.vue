@@ -5,14 +5,15 @@
 </template>
 
 <script>
-
 export default {
-  name: 'App',
-}
+  name: "App",
+};
 </script>
 
 <style>
 .app {
+  overflow: auto;
   height: 100%;
+  text-align: center;
 }
 </style>
