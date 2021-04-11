@@ -6,7 +6,7 @@ module.exports = {
     loaderOptions: {
       postcss: {
         plugins: [
-          px2rem({ remUnit: 100 }),
+          px2rem({ remUnit: 100 }), // html: font-size: 100px;
         ],
       },
     },
