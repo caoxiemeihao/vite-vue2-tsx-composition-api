@@ -1,5 +1,7 @@
 # vue2-tsx-composition-api
 
+![](https://raw.githubusercontent.com/caoxiemeihao/vue2-tsx-composition-api/master/screenshots/code-page.png)
+
 ## Project setup
 ```
 yarn install
