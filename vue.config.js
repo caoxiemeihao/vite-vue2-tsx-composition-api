@@ -1,6 +1,16 @@
 const path = require('path')
+const px2rem = require('postcss-px2rem')
 
 module.exports = {
+  css: {
+    loaderOptions: {
+      postcss: {
+        plugins: [
+          px2rem({ remUnit: 100 }),
+        ],
+      },
+    },
+  },
   configureWebpack: {
     resolve: {
       alias: {
