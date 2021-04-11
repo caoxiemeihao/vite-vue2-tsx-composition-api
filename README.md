@@ -1,7 +1,10 @@
 # vue2-tsx-composition-api
 
+---
+
 ![](https://raw.githubusercontent.com/caoxiemeihao/vue2-tsx-composition-api/master/screenshots/code-page.png)
 
+---
 ## Project setup
 ```
 yarn install
@@ -24,3 +27,7 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## License
+
+[MIT License](https://opensource.org/licenses/MIT)
