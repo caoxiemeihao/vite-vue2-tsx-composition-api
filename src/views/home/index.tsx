@@ -62,7 +62,10 @@ export default defineComponent({
               {HookComp}
             </Tab>
             <Tab title="H-C" name={2}>
-              <div style="padding-top:24px;">
+              <h2>
+                Hooks with Component
+              </h2>
+              <div>
                 <Button type="info" onclick={() => this.HCVisble = true}>点击唤起日期</Button>
               </div>
               {this.HCComponent()}
