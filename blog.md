@@ -1,5 +1,6 @@
-- [Hooks with Component](https://raw.githubusercontent.com/caoxiemeihao/vue2-tsx-composition-api/master/screenshots/HC-page.png)
+- ![Hooks with Component](https://raw.githubusercontent.com/caoxiemeihao/vue2-tsx-composition-api/master/screenshots/HC-page.png)
 
+---
 
 ## 前言
 1. 我猜你可能是一个更偏向于个 `React` 开发者
@@ -35,7 +36,7 @@ yarn add @vue/composition-api
   ```
 
 - 修改配置文件
-  * `babel.config.js`
+  * 修改根目录 `babel.config.js`
     ```diff
     module.exports = {
       presets: [
@@ -48,7 +49,7 @@ yarn add @vue/composition-api
     }
     ```
 
-  * `vue.config.js`
+  * 根目录新建 `vue.config.js`
     ```diff
     + const path = require('path')
 
@@ -72,9 +73,56 @@ yarn add @vue/composition-api
     + }
     ```
 
+  * 根目录新建 `tsconfig.json`
+    ```diff
+    + {
+    +   "compilerOptions": {
+    +     "target": "ES2017",
+    +     "module": "UMD",
+    +     "allowJs": true,
+    +     "jsx": "preserve",
+    +     "moduleResolution": "Node",
+    +     "allowSyntheticDefaultImports": true,
+    +     "importHelpers": true,
+    +     "baseUrl": "./",
+    +     "paths": {
+    +       "@/*": ["src/*"]
+    +     }
+    +   }
+    + }
+    ```
 
-## 注意！
-- `setup` 中不支持(setup 中没有 this) `tsx`, 必须写在 `render` 中
+## 修改 App.vue -> App.tsx
+- `.vue` 文件和 `.tsx` 可以看成是等价的，直接使用即可；注意 `jsx` 中组件标签首字母一定要大写 😄
+- `.png` 静态资源用法就是直接引入，底层通过 `url-loader` 处理；@vue/cli 集成了静态资源配置
+
+  ```tsx
+  import { defineComponent, onMounted } from '@vue/composition-api'
+  import HelloWorld from './components/HelloWorld.vue'
+  import logo from '@/assets/logo.png'
+
+  export default defineComponent({
+    setup() {
+      onMounted(() => {})
+    },
+    render() {
+      return (
+        <div class="app">
+          <img alt="Vue logo" src={logo} />
+          <HelloWorld msg="Welcome to Your Vue.js App"/>
+        </div>
+      )
+    },
+  })
+
+  ```
+- **注意！**`setup` 中不支持 (setup 中没有 this) `tsx`, 必须写在 `render` 中
+- 启动下项目看看效果吧~
+  ```bash
+  yarn serve
+  ```
+
+![](https://raw.githubusercontent.com/caoxiemeihao/vue2-tsx-composition-api/master/screenshots/app-tsx.png)
 
 ## 参考文章
 - [用于提供 组合式 API 的 Vue 2 插件](https://github.com/vuejs/composition-api/blob/HEAD/README.zh-CN.md)
