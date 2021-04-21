@@ -1,4 +1,4 @@
-- [图]()
+- [Hooks with Component](https://raw.githubusercontent.com/caoxiemeihao/vue2-tsx-composition-api/master/screenshots/HC-page.png)
 
 
 ## 前言
