@@ -12,7 +12,7 @@
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <script>
-      var width = (window.innerWidth / 375) * 100;
+      var width = (screen.width / 375) * 100;
       document.getElementsByTagName('html')[0].style.fontSize = width + 'px' // 配合 postcss-px2rem
     </script>
     <div id="app"></div>
