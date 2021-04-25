@@ -1,4 +1,4 @@
-- ![Hooks with Component](https://raw.githubusercontent.com/caoxiemeihao/vue2-tsx-composition-api/master/screenshots/HC-page.png)
+![Hooks with Component](https://raw.githubusercontent.com/caoxiemeihao/vue2-tsx-composition-api/master/screenshots/HC-page.png)
 
 ---
 
@@ -93,7 +93,7 @@ yarn add @vue/composition-api
     ```
 
 ## 修改 App.vue -> App.tsx
-- `.vue` 文件和 `.tsx` 可以看成是等价的，直接使用即可；注意 `jsx` 中组件标签首字母一定要大写 😄
+- `.vue` 文件和 `.tsx` 可以看成是等价的，直接使用即可；注意 `jsx` 中组件标签首字母一定要大写！
 - `.png` 静态资源用法就是直接引入，底层通过 `url-loader` 处理；@vue/cli 集成了静态资源配置
 
   ```tsx
@@ -117,7 +117,7 @@ yarn add @vue/composition-api
 
   ```
 - **注意！**`setup` 中不支持 (setup 中没有 this) `tsx`, 必须写在 `render` 中
-- 启动下项目看看效果吧~
+- 启动下项目看看效果吧~ 😄
   ```bash
   yarn serve
   ```
