@@ -215,7 +215,7 @@ export default defineComponent({
   ```
 
   ```tsx
-  // Vue2 Hooks
+  // Vue2 Composition API
   import { ref } from '@vue/composition-api'
 
   export function useRequestWithVue2() {
@@ -259,7 +259,7 @@ export default defineComponent({
   * 收益: 能复用 UI 展示，内部能够有自己的逻辑、状态
   * 弊端: 内部逻辑、状态对外通讯 **需要有一定的手段** 处理，Vue、React 均是如此
 - 试想一下我们写一个 Hooks
-  * 收益: 提供逻辑服用、状态自动更新
+  * 收益: 提供逻辑复用、调用处状态自动更新
 
 - 能不能把 Hooks、Component 的收益放到一起呢？(成年人的世界选择全要😏)
   Function Component、Hooks 只是返回值看起来不一样而已；要是我们 “两者都返回” 怎么样？
