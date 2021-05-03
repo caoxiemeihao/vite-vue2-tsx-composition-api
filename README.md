@@ -185,7 +185,7 @@ export default defineComponent({
 
 ## 写一个 Hooks
 - 如果你写过 React Hooks 那么你已经大概知道怎么写的了
-- 它看起来像个和普通的 `函数式` 组件，一般意义函数组件返回 `VNode`，Hooks 返回 `状态`
+- 它看起来像个普通的 `函数式` 组件，一般意义的函数式组件返回 `VNode`，Hooks 返回 `状态`
 
   ```tsx
   // React Hooks
