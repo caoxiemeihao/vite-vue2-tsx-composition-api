@@ -1,4 +1,4 @@
-  ![App.tsx](https://raw.githubusercontent.com/caoxiemeihao/vue2-tsx-composition-api/master/screenshots/app-tsx.png)
+  <!-- ![App.tsx](https://raw.githubusercontent.com/caoxiemeihao/vue2-tsx-composition-api/master/screenshots/app-tsx.png) -->
 
 ## 前言
 1. 我猜你可能是一个更偏向于个 `React` 开发者
@@ -264,8 +264,8 @@ export default defineComponent({
 - 能不能把 Hooks、Component 的收益放到一起呢？(成年人的世界选择全要😏)
   Function Component、Hooks 只是返回值看起来不一样而已；要是我们 “两者都返回” 怎么样？
   * 收益: 能复用 UI 展示，内部能够有自己的逻辑、状态
-    借助响应式设计会 **自动吐出来** 内部状态
-    而不再是使用组件的种种通讯方式去 **手动捞出来** 内部状态
+    1. 借助响应式设计会 **自动吐出来** 内部状态
+    2. 而不再是使用组件的种种通讯方式去 **手动捞出来** 内部状态
 
 - 基于 vant 设计一个 `useCalendar`
   ```tsx
