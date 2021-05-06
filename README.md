@@ -367,6 +367,41 @@ export default defineComponent({
 * 引用官网的一句话 ~ (可能你木有注意到哦)
 ![React Hooks](./screenshots/react-hooks.png)
 
+## CSS 模块化
+
+- `Vue Cli` 已经内置了 `xxxx.module.(css|less|sass|scss|styl)` 的 `webpack loader` 配置；用于开启 `style-loader` 的模块化
+```less
+// foo.module.less
+.foo {
+  color: aliceblue;
+
+  :global {
+    .bar {
+      color: skyblue;
+    }
+  }
+}
+```
+
+```jsx
+// foo.tsx
+import { defineComponent } from '@vue/composition-api'
+import styles from './foo.module.less'
+
+export default defineComponent({
+  render() {
+    return (
+      <div class={styles.foo}>
+        Foo Component.
+        <div class="bar">
+          Bar Component.
+        </div>
+      </div>
+    )
+  },
+})
+```
+
 ## VSCode 配置
 - `emmet` 生成 `class` 而不是 `className`
 ```json
