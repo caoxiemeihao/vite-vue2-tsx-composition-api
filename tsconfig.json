@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "module": "UMD",
+    "target": "ES2018",
+    "module": "CommonJs",
     "allowJs": true,
     "jsx": "preserve",
     "moduleResolution": "Node",
+    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "importHelpers": true,
     "baseUrl": "./",
