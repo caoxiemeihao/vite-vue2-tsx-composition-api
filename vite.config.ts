@@ -1,41 +1,65 @@
 import path from 'path'
 import fs from 'fs'
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
+import { defineConfig, PluginOption } from 'vite'
+import { createVuePlugin } from 'vite-plugin-vue2'
 import _ from 'lodash'
 import pkg from './package.json'
 
+// The first step coyp ’public/index.html‘ to root directory
+copyIndexHtml()
+
 export default defineConfig((env) => ({
   plugins: [
-    vue(),
-    vueJsx(),
-    {
-      name: '草鞋没号:transform-index.html',
-      transformIndexHtml(_html, _ctx) {
-        const html = fs.readFileSync(path.join(__dirname, 'public/index.html'))
-        const compiled = _.template(html, { interpolate: /<%=([\s\S]+?)%>/g })
-        const tpl = compiled({
-          BASE_URL: '/',
-          htmlWebpackPlugin: {
-            options: {
-              title: pkg.name,
-            },
-          }
-        })
-        return tpl.replace('</body>', `<script type="module" src="/src/main.js"></script>
-</body>`)
-      },
-    },
+    createVuePlugin({
+      jsx: true,
+    }),
   ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
-    extensions: ['.ts', '.tsx'],
+    // 会导致 GET http://localhost:3000/@vite/client net::ERR_ABORTED 404 (Not Found)
+    // extensions: ['.ts',， '.tsx'],
   },
   esbuild: {
     jsxFactory: 'h',
     jsxFragment: 'Fragment',
   },
 }))
+
+function copyIndexHtml() {
+  let indexHtml = fs.readFileSync(path.join(__dirname, 'public/index.html'), 'utf8')
+  const compiled = _.template(indexHtml, { interpolate: /<%=([\s\S]+?)%>/g })
+  const date = new Date
+  const hms = date
+    .toLocaleTimeString()
+    .split(' ')[0]
+    .split(':')
+    .join('-')
+  const ymd = date
+    .toLocaleDateString()
+    .split('/')
+    .reverse()
+    .join('-')
+
+  indexHtml = compiled({
+    BASE_URL: '/',
+    htmlWebpackPlugin: {
+      options: {
+        title: pkg.name,
+      },
+    }
+  })
+
+  indexHtml = indexHtml.split('\n')
+    .map(line => line.includes('</body>')
+      ? `    <script type="module" src="/src/main.js">${ymd}|${hms}</script>
+${line}`
+      : line
+    )
+    .join('\n')
+
+  fs.writeFileSync(path.join(__dirname, 'index.html'), indexHtml)
+
+  console.log('[vite.config.ts] public/index.html has copyed.')
+}
