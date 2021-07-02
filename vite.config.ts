@@ -48,11 +48,10 @@ function transformIndexHtml(opts: {
 
   return {
     name: 'cxmh:transformIndexHtml',
-    transformIndexHtml() {
-      let indexHtml: string
+    transformIndexHtml(html) {
+      let indexHtml = html
 
       try {
-        indexHtml = fs.readFileSync(opts.template, 'utf8')
         const compiled = _.template(indexHtml, { interpolate: /<%=([\s\S]+?)%>/g })
 
         indexHtml = compiled(opts.templateData)
