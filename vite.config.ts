@@ -12,6 +12,14 @@ export default defineConfig((env) => ({
     }),
     transformIndexHtml({
       template: path.join(__dirname, 'public/index.html'),
+      templateData: {
+        BASE_URL: '/',
+        htmlWebpackPlugin: {
+          options: {
+            title: pkg.name,
+          },
+        },
+      },
     }),
   ],
   resolve: {
@@ -27,7 +35,10 @@ export default defineConfig((env) => ({
   },
 }))
 
-function transformIndexHtml(opts: { template: string }): Plugin {
+function transformIndexHtml(opts: {
+  template: string
+  templateData?: Record<string, unknown>
+}): Plugin {
   const rootIndexHtml = path.join(__dirname, 'index.html')
 
   if (!fs.existsSync(rootIndexHtml)) {
@@ -44,14 +55,7 @@ function transformIndexHtml(opts: { template: string }): Plugin {
         indexHtml = fs.readFileSync(opts.template, 'utf8')
         const compiled = _.template(indexHtml, { interpolate: /<%=([\s\S]+?)%>/g })
 
-        indexHtml = compiled({
-          BASE_URL: '/',
-          htmlWebpackPlugin: {
-            options: {
-              title: pkg.name,
-            },
-          }
-        })
+        indexHtml = compiled(opts.templateData)
 
         indexHtml = indexHtml.split('\n')
           .map(line => line.includes('</body>')
