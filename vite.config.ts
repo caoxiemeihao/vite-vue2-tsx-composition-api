@@ -20,6 +20,7 @@ export default defineConfig((env) => ({
           },
         },
       },
+      entry: '/src/main.js',
     }),
   ],
   resolve: {
@@ -38,6 +39,7 @@ export default defineConfig((env) => ({
 function transformIndexHtml(opts: {
   template: string
   templateData?: Record<string, unknown>
+  entry?: string
 }): Plugin {
   const rootIndexHtml = path.join(__dirname, 'index.html')
 
@@ -53,12 +55,13 @@ function transformIndexHtml(opts: {
 
       try {
         const compiled = _.template(indexHtml, { interpolate: /<%=([\s\S]+?)%>/g })
+        const entry = opts.entry || '/src/main.js'
 
         indexHtml = compiled(opts.templateData)
 
         indexHtml = indexHtml.split('\n')
           .map(line => line.includes('</body>')
-            ? `    <script type="module" src="/src/main.js"></script>
+            ? `    <script type="module" src="${entry}"></script>
 ${line}`
             : line
           )
