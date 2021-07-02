@@ -9,7 +9,7 @@
     "vite": "vite"
   },
   "dependencies": {
-    "@vue/composition-api": "^1.0.0-rc.6",
+    "@vue/composition-api": "^1.0.0-rc.13",
     "core-js": "^3.6.5",
     "vant": "^2.12.13",
     "vue": "^2.6.11",
